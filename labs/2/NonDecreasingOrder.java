@@ -2,7 +2,7 @@
   * file: NonDecreasingOrder.java
   * author: Victoria Lyman 
   * course: CMPT 220
-  * assignment: Lab 1
+  * assignment: Lab 2
   * due date: February 7, 2017
   * version: 1
   *
