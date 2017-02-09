@@ -3,7 +3,7 @@
   * author: Victoria Lyman 
   * course: CMPT 220
   * assignment: Lab 2
-  * due date: February 7, 2017
+  * due date: February 14, 2017
   * version: 1
   *
   * This file contains a program to answer Problem 4.8 from
@@ -23,8 +23,9 @@ public class ASCIIFinder{
 
     //Ask the user to input an ASCII code and save value.
     System.out.print("Enter an ASCII code: ");
-    int code = input.nextInt();
+    int a = input.nextInt();
 
-    
+    // Output ASCII character.
+    System.out.println("The character for ASCII code " + a + " is " + (char)a);
   }
 }
