@@ -21,7 +21,23 @@ public class Tuition{
   public static void main(String[] args){
 
     // Tuition starts at $10,000.
-    int tuition = 10000;
+    double tuition = 10000;
     
+    /**
+      * for loop
+      *
+      * allows code to be executed repeatedly for a specific iteration
+      */
+
+    // Increase tuition by 5% for 10 years.
+    for(int y = 1; y < 11; y++){
+      tuition = tuition * 1.05;
+    }
+
+    // Compute cost for 4 years of tuition after 10 years.
+    double year10 = tuition * 4;
+
+    System.out.println("The tuition for one year after 10 years is $" + tuition);
+    System.out.println("The cost of 4 year tuition then would be $" + year10);
   }
 }
