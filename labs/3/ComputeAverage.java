@@ -44,7 +44,7 @@ public class ComputeAverage{
       * allows code to be executed repeatedly based on a given Boolean statement
       */
     // Create while loop to continously search for integers given.
-    while(number != 0){
+    do {
       if(number > 0){
         positive = positive + 1;
       }
@@ -55,7 +55,7 @@ public class ComputeAverage{
       total = total + number;
       amount = amount + 1;
       number = input.nextInt();
-    }
+    } while(number != 0);
 
     // Find average.
     int average = total / amount;
