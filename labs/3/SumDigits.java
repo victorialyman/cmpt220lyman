@@ -16,8 +16,42 @@
   * public static int sumDigits(long n)
   */
 
+import java.util.Scanner;
+
 public class SumDigits{
   public static void main(String[] args){
     
+    Scanner input = new Scanner(System.in);
+
+    // Ask user for an integer.
+    System.out.print("Enter an multi-digit integer: ");
+
+    // Save user input as an integer.
+    int number = input.nextInt();
+
+    // Output sum.
+    System.out.println("The sum of the digits is " + sumDigits(number));
+
+  }
+
+  public static int sumDigits(int n){
+
+    int sum = 0;
+
+    /**
+      * while loop
+      *
+      * allows code to be exectued repeatedly based on a given Boolean condition
+      */
+    while(n != 0){
+      
+      // Add digit to sum.
+      sum = sum + (n % 10);
+
+      // Extract digit from number.
+      n = n / 10;
+    }
+
+    return sum;
   }
 }
