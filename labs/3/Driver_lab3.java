@@ -4,7 +4,7 @@
   * course: CMPT 220
   * assignment: Lab 3
   * due date: February 21, 2017
-  * version: 1
+  * version: 5
   *
   * This file contains a program to answer the Kattis problem
   * called Different Distances in Lab 3. 
@@ -17,6 +17,7 @@
   */
 
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 public class Driver_lab3{
   public static void main(String[] args){
@@ -42,10 +43,14 @@ public class Driver_lab3{
       double pow1 = Math.pow(abs1, p);
       double pow2 = Math.pow(abs2, p);
       double combine = pow1 + pow2;
-      double distance = Math.pow(combine, (1/p));
-      
+      double finalpow = 1 / p;
+      double distance = Math.pow(combine, finalpow);
+
+      // Terminate number after 10 decimal points.
+      DecimalFormat df = new DecimalFormat("#.0000000000");
+
       // Output distance
-      System.out.println(distance);
+      System.out.println(df.format(distance));
       
       number = input.nextDouble();
     }
