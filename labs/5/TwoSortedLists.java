@@ -77,10 +77,10 @@ public class TwoSortedLists{
       int min = list[i];
       int minIndex = i;
 
-      for(int j = i +1; j < list.length; j++){
-        if(list[j] < min){
+      for(int j = i + 1; j < list.length; j++){
+        if(list[j] < min){ //If current element is smaller than the first element
           min = list[j];
-          minIndex = j;
+          minIndex = j; // move element to be the first
         }
       }
 
