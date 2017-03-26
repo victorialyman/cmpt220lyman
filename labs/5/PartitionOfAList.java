@@ -44,6 +44,69 @@ public class PartitionOfAList{
 
   public static int partition(int[] list){
 
+    int temp = 0;
+    int first = 0;
+    int pivot = list[first]; //Set pivot point as the first element
+
+    int low = 1;
+    int high = list.length - 1;
+
+    while(low < high){
+
+      while (list[low] <= pivot){
+        low++;
+      }
+
+      while(list[high] > pivot){
+        high--;
+      }
+
+      if(low <= high){
+
+        // Moves lower numbers before the pivot element
+        temp = list[high];
+        list[high] = list[low];
+        list[low] = temp;
+      }
+
+      else if(high > first){
+
+        // Moves higher numbers after the pivot element
+        temp = list[high];
+        list[high] = list[first];
+        list[first] = temp;
+
+        return high;
+      }
+
+      else{
+        return first;
+      }
+      
+      // Swap elements lower than pivot point to be before pivot
+      /*
+      if(list[i] <= list[pivot]){
+
+        temp = list[i];
+        list[i] = list[pivot];
+        list[pivot] = temp;
+        pivot = i;
+
+      }
+
+      // Swap elements higher than pivot point to be after pivot
+      else {
+        temp = list[pivot];
+        list[pivot] = list[i];
+        list[i] = temp;
+        pivot = i;
+      }
+      */
+
+    }
+
+    return high;
+
   }
 
   // Method to print an array that I use in every program where I need to print an array
