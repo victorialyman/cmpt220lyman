@@ -83,6 +83,7 @@ public class PartitionOfAList{
         return first;
       }
       
+      // I have no idea why I kept this here but I know it didn't work
       // Swap elements lower than pivot point to be before pivot
       /*
       if(list[i] <= list[pivot]){
