@@ -4,7 +4,7 @@
   * course: CMPT 220
   * assignment: Project 1
   * due date: March 28, 2017
-  * version: 1
+  * version: who knows I lost count
   *
   * This file contains a program for Project 1: Convolution.
   */
@@ -37,10 +37,6 @@ public class Driver_prj1 {
     }
 
     convolveVectors(vFirst, vSecond);
-
-    //double[] vResult = new double[(vFirst.length + vSecond.length) - 1];
-
-    //printArray(vResult);
     
   }
 
@@ -48,28 +44,25 @@ public class Driver_prj1 {
     double[] vResult = new double[(vFirst.length + vSecond.length) - 1];
     // write your code here
 
+    // Creates an element for every index in vResult array
     for(int idx = 0; idx < vResult.length; idx++){
       
-      int shift = 0;
-      double sum = 0.0;
-      vResult[idx] = 0;
-
-      while(shift < vFirst.length){ //Avoids out of bounds index
-
-        for(shift = 0; shift < vFirst.length; shift++){
+      vResult[idx] = 0; // Initializes to 0
+      
+      for(int shift = 0; shift < vSecond.length; shift++){ //Amount by which vector is shifted
         
-          if((idx - shift > 0) && (idx - shift < vFirst.length)){
-              sum = sum + (vFirst[idx - shift] * vSecond[shift]);
-          }
+        // I had this as > 0 instead of >= 0 and it messed me up for so long
+        if((idx - shift >= 0) && (idx - shift < vFirst.length)){ //Avoids out of bounds index
+          // Continually adds multiplications of elements to create final result
+          vResult[idx] += (vFirst[idx - shift] * vSecond[shift]);
+        }
 
-          else{
-            sum = sum + 0.0;
-          }
+        else{ // If index is out of bounds, 0 is added.
+          vResult[idx] += 0;
         }
 
       }
 
-      vResult[idx] = sum;
     }
 
     printArray(vResult);
