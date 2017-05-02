@@ -16,7 +16,10 @@ public class Project2{
 
   static Scanner input = new Scanner(System.in);
 
-  // All of the available options
+  // All of the available options throughout the order
+  static String[] fullorder = {"0 - Size", "1 - Regular or Decaf", "2 - Flavor",
+    "3 - Coffee Type", "4 - Creamer/Milk", "5 - Sugar"};
+
   static String[] types = {"1 - Hot Coffee", "2 - Iced Coffee", "3 - Latte",
     "4 - Iced Latte", "5 - Macchiato", "6 - Iced Macchiato"};
 
@@ -32,22 +35,25 @@ public class Project2{
   static String[] flavors = {"1 - French Vanilla", "2 - Hazelnut", "3 - Caramel",
     "4 - Mocha"};
 
+  static String[] noyes = {"0 - No", "1 - Yes"};
+
 
   public static void main(String[] args){
 
     String[] order = new String[6];
     /*
-     * order[0] = type
-     * order[1] = size
-     * order[2] = reg or decaf
-     * order[3] = creamer
-     * order[4] = sugar
-     * order[5] = flavor
+     * order[0] = size
+     * order[1] = reg or decaf
+     * order[2] = flavor
+     * order[3] = type
+     * order[4] = creamer
+     * order[5] = sugar
      */
   
     System.out.println("Hello welcome to the Coffee Shop!");
     System.out.println("What would you like to order?");    
 
+    // Brings you through the ordering process in a series of methods
     coffeeType(order);
     sizeSelection(order);
     regDecaf(order);
@@ -64,23 +70,23 @@ public class Project2{
     printArray(types);
     System.out.println("Type a number corresponding to the drink you would like:");
 
-    int t = validInput(1, 6);
+    int t = validInput(1, 6, types);
 
     // Insert coffee type into the order
     switch(t){
-      case 1: order[0] = "Hot Coffee";
+      case 1: order[3] = "Hot Coffee";
         break;
-      case 2: order[0] = "Iced Coffee";
+      case 2: order[3] = "Iced Coffee";
         break;
-      case 3: order[0] = "Latte";
+      case 3: order[3] = "Latte";
         break;
-      case 4: order[0] = "Iced Latte";
+      case 4: order[3] = "Iced Latte";
         break;
-      case 5: order[0] = "Macchiato";
+      case 5: order[3] = "Macchiato";
         break;
-      case 6: order[0] = "Iced Macchiato";
+      case 6: order[3] = "Iced Macchiato";
         break;
-      default: order[0] = null;
+      default: order[3] = "Hot Coffee";
         break;
     }
     
@@ -94,17 +100,17 @@ public class Project2{
     System.out.println("Select a size");
     printArray(sizes);
 
-    int s = validInput(1, 3);
+    int s = validInput(1, 3, sizes);
 
     // Insert size into the order
     switch(s){
-      case 1: order[1] = "Small";
+      case 1: order[0] = "Small";
         break;
-      case 2: order[1] = "Medium";
+      case 2: order[0] = "Medium";
         break;
-      case 3: order[1] = "Large";
+      case 3: order[0] = "Large";
         break;
-      default: order[1] = null;
+      default: order[0] = "Medium";
         break;
     }
 
@@ -117,15 +123,15 @@ public class Project2{
     System.out.println(" ");
     System.out.println("Would you like 1 - Regular or 2 - Decaf?");
 
-    int rd = validInput(1, 2);
+    int rd = validInput(1, 2, rOrD);
 
     // Insert regular or decaf into the order
     switch(rd){
-      case 1: order[2] = "Regular";
+      case 1: order[1] = "Regular";
         break;
-      case 2: order[2] = "Decaf";
+      case 2: order[1] = "Decaf";
         break;
-      default: order[2] = null;
+      default: order[1] = "Regular";
         break;
     }
 
@@ -134,18 +140,24 @@ public class Project2{
 
   // Selecting a creamer option
   public static String[] creamSelection(String[] order){
+    
+    // Create a double to store the measurement size
     double cmeasurement = 0;
     int c;
 
+    /*
+     * String is used to check if Hot/Iced Coffee is selected as cream options are 
+     * different for those compared to a Latte or Macchiato 
+     */
     String orderString = Arrays.toString(order);
     
-    // Selection only for Hot/Iced Coffee
-    if(orderString.contains("Hot Coffee") || orderString.contains("Iced Coffee")){
+    // Creamer selection only for Hot/Iced Coffee
+    if(orderString.contains("Coffee")){
       System.out.println(" ");
       System.out.println("Would you like to add a creamer?");
       printArray(creamer);
 
-      c = validInput(0, 4);
+      c = validInput(0, 4, creamer);
 
       // If creamer is chosen
       if(c > 0){
@@ -157,36 +169,36 @@ public class Project2{
 
         // Insert creamer and measurement into order
         switch(c){
-        case 1: order[3] = cmeasurement + " tablespoons of Cream";
+        case 1: order[4] = cmeasurement + " tablespoons of Cream";
           break;
-        case 2: order[3] = cmeasurement + " tablespoons of Milk";
+        case 2: order[4] = cmeasurement + " tablespoons of Milk";
           break;
-        case 3: order[3] = cmeasurement + " tablespoons of Almond Milk";
+        case 3: order[4] = cmeasurement + " tablespoons of Almond Milk";
           break;
-        case 4: order[3] = cmeasurement + " tablespoons of Skim Milk";
+        case 4: order[4] = cmeasurement + " tablespoons of Skim Milk";
           break;
-        default: order[3] = null;
+        default: order[4] = null;
           break;
         }
       }
     }
 
-    // Selection for Latte or Macchiato
+    // Creamer selection for Latte or Macchiato
     else{
       System.out.println(" ");
       System.out.println("What kind of milk would you like?");
       printArray(milk);
 
-      c = validInput(1, 3);
+      c = validInput(1, 3, milk);
 
       switch(c){
-        case 1: order[3] = "Whole Milk";
+        case 1: order[4] = "Whole Milk";
           break;
-        case 2: order[3] = "Almond Milk";
+        case 2: order[4] = "Almond Milk";
           break;
-        case 3: order[3] = "Skim Milk";
+        case 3: order[4] = "Skim Milk";
           break;
-        default: order[3] = null;
+        default: order[4] = "Whole Milk";
           break;
       }
     }
@@ -196,11 +208,22 @@ public class Project2{
 
   // Selecting sugar option
   public static String[] sugarSelection(String[] order){
-    System.out.println(" ");
-    System.out.println("Would you like any sugar?");
-    System.out.println("0 - No or 1 - Yes");
 
-    int su = validInput(0, 1);
+    // First time selecting sugar or no sugar is selected
+    if(order[5] == null){
+      System.out.println(" ");
+      System.out.println("Would you like any sugar?");
+      System.out.println("0 - No or 1 - Yes");
+    }
+
+    // When editing order and sugar is already in use
+    else{
+      System.out.println(" ");
+      System.out.println("Would you like to change your measurement of sugar?");
+      System.out.println("0 - No (Remove Sugar) or 1 - Yes (Change measurement)");
+    }
+
+    int su = validInput(0, 1, noyes);
 
     // If sugar is chosen
     if(su == 1){
@@ -211,12 +234,12 @@ public class Project2{
       double smeasurement = validDouble(0, 10);
 
       // Insert sugar and measurement into order
-      order[4] = smeasurement + " teaspoons of sugar";
+      order[5] = smeasurement + " teaspoons of sugar";
     }
 
     // If sugar isn't chosen
     else{
-      order[4] = null;
+      order[5] = null;
     }
 
     return order;
@@ -224,36 +247,50 @@ public class Project2{
 
   // Selecting a flavor
   public static String[] flavorSelection(String[] order){
-    System.out.println(" ");
-    System.out.println("Would you like to add a flavor?");
-    System.out.println("0 - No or 1 - Yes");
 
-    int af = validInput(0, 1);
+    // First time selecting flavor or no flavor is selected
+    if(order[2] == null){
+      System.out.println(" ");
+      System.out.println("Would you like to add a flavor?");
+      System.out.println("0 - No or 1 - Yes");
+    }
+
+    // When editing order and a flavor is already selected
+    else{
+      System.out.println(" ");
+      System.out.println("Would you like to change your flavor?");
+      System.out.println("0 - No (Remove Flavor)");
+      System.out.println("1 - Yes (Change Flavor)");
+    }
+
+    int af = validInput(0, 1, noyes);
 
     // If flavor is chosen
     if(af == 1){
+      System.out.println(" ");
       System.out.println("Select a flavor");
       printArray(flavors);
       
-      int f = validInput(1, 4);
+      int f = validInput(1, 4, flavors);
 
       // Insert flavor into order
       switch(f){
-      case 1: order[5] = "French Vanilla";
+      case 1: order[2] = "French Vanilla";
         break;
-      case 2: order[5] = "Hazelnut";
+      case 2: order[2] = "Hazelnut";
         break;
-      case 3: order[5] = "Caramel";
+      case 3: order[2] = "Caramel";
         break;
-      case 4: order[5] = "Mocha";
+      case 4: order[2] = "Mocha";
         break;
-      default: order[5] = null;
+      default: order[2] = null;
         break;
       }
     }
 
+    // If flavor is not chosen
     else{
-      order[5] = null;
+      order[2] = null;
     }
 
     return order;
@@ -262,19 +299,22 @@ public class Project2{
   // Finalize order
   public static void finalizeOrder(String[] order){
 
+    // Output final order for confirmation
     System.out.println(" ");
     System.out.println("Your final order is:");
     printArray(order);
 
     System.out.println(" ");
     System.out.println("Is that correct?");
-    System.out.println("1 - Yes or 2 - No");
+    System.out.println("0 - No or 1 - Yes");
 
-    int finalize = validInput(1, 2);
+    int finalize = validInput(0, 1, noyes);
 
     if(finalize == 1){
+      System.out.println(" ");
       System.out.println("Thank you for choosing the Coffee Shop!");
       System.out.println("Enjoy your drink!");
+      // Program ends
     }
 
     else{
@@ -283,10 +323,12 @@ public class Project2{
   }
 
   // A method to check that user input is a valid option
-  public static int validInput(int low, int high){
+  public static int validInput(int low, int high, String[] options){
     
     // While input is not an integer
     while(!input.hasNextInt()){
+      System.out.println(" ");
+      printArray(options);
       System.out.println("Please enter a valid number from the options provided above.");
       input.next();
     }
@@ -295,6 +337,8 @@ public class Project2{
 
     // While int is not an available option
     while(good < low || good > high){
+      System.out.println(" ");
+      printArray(options);
       System.out.println("Please enter a valid number from the options provided above.");
       good = input.nextInt();
     }
@@ -324,41 +368,65 @@ public class Project2{
 
   // Method to edit order when user messed up
   public static void editOrder(String[] order){
-    System.out.println("What would you like to change?");
-    System.out.println("0 - Coffee Type");
-    System.out.println("1 - Size");
-    System.out.println("2 - Regular or Decaf");
-    System.out.println("3 - Cream");
-    System.out.println("4 - Sugar");
-    System.out.println("5 - Flavor");
 
-    int edit = validInput(0, 5);
+    System.out.println(" ");
+    System.out.println("What would you like to change?");
+    printArray(fullorder);
+
+    int edit = validInput(0, 5, fullorder);
 
     System.out.println(" ");
 
+    // Output if there is user has nothing for that option currently
     if(order[edit] == null){
       System.out.println("You currently do not have anything selected for this.");
     }
 
+    // Output to tell user what their current option
     else{
       System.out.println("Your current selection is " + order[edit]);
     }
 
+    /*
+     * order[0] = size
+     * order[1] = reg or decaf
+     * order[2] = flavor
+     * order[3] = type
+     * order[4] = creamer
+     * order[5] = sugar
+     */
+
     switch(edit){
-      case 0: coffeeType(order);
+      case 0: sizeSelection(order);
         break;
-      case 1: sizeSelection(order);
+      case 1: regDecaf(order);
         break;
-      case 2: regDecaf(order);
+      case 2: flavorSelection(order);
         break;
-      case 3: creamSelection(order);
+      case 3: coffeeType(order);
         break;
-      case 4: sugarSelection(order);
+      case 4: creamSelection(order);
         break;
-      case 5: flavorSelection(order);
+      case 5: sugarSelection(order);
         break;
       default: finalizeOrder(order);
         break;
+    }
+
+    /*
+     * String is used to check if Hot/Iced Coffee is selected as cream options are 
+     * different for those compared to a Latte or Macchiato 
+     */
+    String orderString = Arrays.toString(order);
+
+    if((orderString.contains("Coffee") && !(orderString.contains("tablespoons")) && !(order[4] == null))
+      || (orderString.contains("Latte") && orderString.contains("tablespoons"))
+      || (orderString.contains("Latte") && order[4] == null)
+      || (orderString.contains("Macchiato") && orderString.contains("tablespoons"))
+      || (orderString.contains("Macchiato") && order[4] == null)){
+
+      System.out.println("You selected a new coffee type that has different cream specifications.");
+      creamSelection(order);
     }
 
     finalizeOrder(order);
