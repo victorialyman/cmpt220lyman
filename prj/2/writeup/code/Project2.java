@@ -4,9 +4,19 @@
   * course: CMPT 220
   * assignment: Project 2
   * due date: May 2, 2017
-  * version: 1
+  * version: 3
   *
   * This file contains a program for Project 2.
+  */
+
+/**
+  * This program is a coffee ordering system which outputs a series of
+  * strings with options for the user to select.  The user inputs integers
+  * which correspond to option they would like.  The options are saved to
+  * an array of strings to be displayed at the end of the ordering process.
+  * The user has the option to edit their order before it is finalized.
+  * When the user is happy with their order they can finalize it and the
+  * program ends.
   */
 
 import java.util.Scanner;
@@ -65,8 +75,16 @@ public class Project2{
   }
 
 
-  // Selecting a coffee type
-  public static String[] coffeeType(String[] order){
+  /**
+    * coffeeType
+    *
+    * This function allows the user to select a coffee type from the options
+    * outputted and saves the option to the order array.
+    *
+    * Parameters:
+    *   order: used to save the user's coffee type for display later
+    */
+  public static void coffeeType(String[] order){
 
     printArray(types);
     System.out.println("Type a number corresponding to the drink you would like:");
@@ -90,13 +108,19 @@ public class Project2{
       default: order[3] = "Hot Coffee";
         break;
     }
-    
-    return order;
   }
 
 
-  // Selecting a size
-  public static String[] sizeSelection(String[] order){
+  /**
+    * sizeSelection
+    *
+    * This function allows the user to select a size from the options outputted
+    * and saves the option to the order array.
+    *
+    * Parameters:
+    *   order: used to save the user's size selection for display later
+    */
+  public static void sizeSelection(String[] order){
 
     System.out.println(" ");
     System.out.println("Select a size");
@@ -115,13 +139,20 @@ public class Project2{
       default: order[0] = "Medium";
         break;
     }
-
-    return order;
   }
 
 
-  // Selecting Regular or Decaf
-  public static String[] regDecaf(String[] order){
+  /**
+    * regDecaf
+    *
+    * This function allows the user to select Regular or Decaf coffee
+    * and saves the option to the order array.
+    *
+    * Parameters:
+    *   order: used to save the user's selection of Regular or Decaf
+    *   for display later
+    */
+  public static void regDecaf(String[] order){
 
     System.out.println(" ");
     System.out.println("Would you like 1 - Regular or 2 - Decaf?");
@@ -137,13 +168,19 @@ public class Project2{
       default: order[1] = "Regular";
         break;
     }
-
-    return order;
   }
 
 
-  // Selecting a creamer option
-  public static String[] creamSelection(String[] order){
+  /**
+    * creamSelection
+    *
+    * This function allows the user to select a creamer from the options outputted
+    * and saves the option to the order array.
+    *
+    * Parameters:
+    *   order: used to save the user's creamer selection for display later
+    */
+  public static void creamSelection(String[] order){
     System.out.println(" ");
     
     /*
@@ -225,13 +262,19 @@ public class Project2{
           break;
       }
     }
-
-    return order;
   }
 
 
-  // Selecting sugar option
-  public static String[] sugarSelection(String[] order){
+   /**
+    * sugarSelection
+    *
+    * This function allows the user to select the amount of sugar they would like
+    * and saves the measurement to the order array.
+    *
+    * Parameters:
+    *   order: used to save the user's sugar measurement for display later
+    */
+  public static void sugarSelection(String[] order){
     System.out.println(" ");
 
     // First time selecting sugar or no sugar is selected
@@ -264,13 +307,19 @@ public class Project2{
     else{
       order[5] = null;
     }
-
-    return order;
   }
 
 
-  // Selecting a flavor
-  public static String[] flavorSelection(String[] order){
+   /**
+    * flavorSelection
+    *
+    * This function allows the user to select a flavor from the options outputted
+    * and saves the option to the order array.
+    *
+    * Parameters:
+    *   order: used to save the user's flavor selection for display later
+    */
+  public static void flavorSelection(String[] order){
     System.out.println(" ");
 
     // First time selecting flavor or no flavor is selected
@@ -315,12 +364,18 @@ public class Project2{
     else{
       order[2] = null;
     }
-
-    return order;
   }
 
 
-  // Finalize order
+   /**
+    * finalizeOrder
+    *
+    * This function prints out the user's final order and allows for them
+    * the option to edit it or finalize it.
+    *
+    * Parameters:
+    *   order: used to display the user's full order
+    */
   public static void finalizeOrder(String[] order){
 
     // Output final order for confirmation
@@ -348,7 +403,19 @@ public class Project2{
   }
 
 
-  // A method to check that user input is a valid option
+  /**
+    * validInput
+    *
+    * This function takes the user's input and validates that it is an available
+    * option from the current selections available.
+    *
+    * Parameters:
+    *   low: the first option available for selection
+    *   high: the last option available for selection
+    *   options: displays the options the user currently has available for selection
+    *
+    * Return value: the user input that is a valid selection option
+    */
   public static int validInput(int low, int high, String[] options){
     
     // While input is not an integer
@@ -373,7 +440,18 @@ public class Project2{
   }
 
 
-  // Same as validInput method but to check against doubles for sugar/cream measurement
+  /**
+    * validDouble
+    *
+    * This function takes the user's input and validates that it is an available
+    * option from the current selections available.
+    *
+    * Parameters:
+    *   low: the smallest option available
+    *   high: the largest option available
+    *
+    * Return value: the user input that is a valid selection option
+    */
   public static double validDouble(double low, double high){
     
     // While input is not a double
@@ -394,7 +472,15 @@ public class Project2{
   }
 
 
-  // Method to edit order when user messed up
+  /**
+    * editOrder
+    *
+    * This function allows the user to edit their current order if they
+    * messed up while ordering or if they changed their mind.
+    *
+    * Parameters:
+    *   order: used to display the user's current order selection
+    */
   public static void editOrder(String[] order){
     int editing = 1;
 
@@ -471,7 +557,15 @@ public class Project2{
   }
 
 
-  // Method to print various arrays of strings throughout the program
+  /**
+    * printArray
+    *
+    * This functions prints out the current selection options or the user's
+    * full order depending on where in the program it is being called.
+    *
+    * Parameters:
+    *   array: the things that will be displayed for the user
+    */
   public static void printArray(String[] array){
 
     for(int i = 0; i < array.length; i++){
