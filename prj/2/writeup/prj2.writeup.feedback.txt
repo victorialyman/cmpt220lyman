@@ -1,0 +1,11 @@
+38 pts
+
+The project attempts to make a coffee ordering program. 
+The idea has good merit. 
+
+However, there are some issues...
+Writeup:
+- Too many pages. -1pt
+
+Overall:
+- Decent work below average of an SD1 student. -1pt
